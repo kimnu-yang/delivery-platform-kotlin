@@ -11,8 +11,6 @@ import org.delivery.db.storemenu.StoreMenuEntity;
 import org.delivery.db.userorder.UserOrderEntity;
 import org.delivery.db.userordermenu.enums.UserOrderMenuStatus;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
