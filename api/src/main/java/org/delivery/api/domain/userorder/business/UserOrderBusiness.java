@@ -44,12 +44,15 @@ public class UserOrderBusiness {
     // 3. userOrderMenu 생성
     // 4. 응답 생성
     public UserOrderResponse userOrder(User user, UserOrderRequest body) {
+
+        var storeEntity = storeService.getStoreWithThrow(body.getStoreId());
+
         var storeMenuEntityList = body.getStoreMenuIdList()
                 .stream()
                 .map(it -> storeMenuService.getStoreMenuWithThrow(it))
                 .collect(Collectors.toList());
 
-        var userOrderEntity = userOrderConverter.toEntity(user, body.getStoreId(), storeMenuEntityList);
+        var userOrderEntity = userOrderConverter.toEntity(user, storeEntity, storeMenuEntityList);
 
         // 주문
         var newUserOrderEntity = userOrderService.order(userOrderEntity);
@@ -86,12 +89,12 @@ public class UserOrderBusiness {
             var userOrderMenuEntityList = userOrderMenuService.getUserOrderMenu(it.getId());
             var storeMenuEntityList = userOrderMenuEntityList.stream()
                     .map(userOrderMenuEntity -> {
-                        return storeMenuService.getStoreMenuWithThrow(userOrderMenuEntity.getStoreMenuId());
+                        return storeMenuService.getStoreMenuWithThrow(userOrderMenuEntity.getStoreMenu().getId());
                     })
                     .collect(Collectors.toList());
 
             // 사용자가 주문한 스토어 TODO NULL POINT 고려
-            var storeEntity = storeService.getStoreWithThrow(storeMenuEntityList.stream().findFirst().get().getStoreId());
+            var storeEntity = storeService.getStoreWithThrow(storeMenuEntityList.stream().findFirst().get().getStore().getId());
 
             return UserOrderDetailResponse.builder()
                     .userOrderResponse(userOrderConverter.toResponse(it))
@@ -113,12 +116,12 @@ public class UserOrderBusiness {
             var userOrderMenuEntityList = userOrderMenuService.getUserOrderMenu(it.getId());
             var storeMenuEntityList = userOrderMenuEntityList.stream()
                     .map(userOrderMenuEntity -> {
-                        return storeMenuService.getStoreMenuWithThrow(userOrderMenuEntity.getStoreMenuId());
+                        return storeMenuService.getStoreMenuWithThrow(userOrderMenuEntity.getStoreMenu().getId());
                     })
                     .collect(Collectors.toList());
 
             // 사용자가 주문한 스토어 TODO NULL POINT 고려
-            var storeEntity = storeService.getStoreWithThrow(storeMenuEntityList.stream().findFirst().get().getStoreId());
+            var storeEntity = storeService.getStoreWithThrow(storeMenuEntityList.stream().findFirst().get().getStore().getId());
 
             return UserOrderDetailResponse.builder()
                     .userOrderResponse(userOrderConverter.toResponse(it))
@@ -137,12 +140,12 @@ public class UserOrderBusiness {
         var userOrderMenuEntityList = userOrderMenuService.getUserOrderMenu(userOrderEntity.getId());
         var storeMenuEntityList = userOrderMenuEntityList.stream()
                 .map(userOrderMenuEntity -> {
-                    return storeMenuService.getStoreMenuWithThrow(userOrderMenuEntity.getStoreMenuId());
+                    return storeMenuService.getStoreMenuWithThrow(userOrderMenuEntity.getStoreMenu().getId());
                 })
                 .collect(Collectors.toList());
 
         // 사용자가 주문한 스토어 TODO NULL POINT 고려
-        var storeEntity = storeService.getStoreWithThrow(storeMenuEntityList.stream().findFirst().get().getStoreId());
+        var storeEntity = storeService.getStoreWithThrow(storeMenuEntityList.stream().findFirst().get().getStore().getId());
 
         return UserOrderDetailResponse.builder()
                 .userOrderResponse(userOrderConverter.toResponse(userOrderEntity))
