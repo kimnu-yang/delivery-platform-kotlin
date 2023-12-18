@@ -2,7 +2,6 @@ package org.delivery.db.userorder
 
 import org.delivery.db.userorder.enums.UserOrderStatus
 import org.springframework.data.jpa.repository.JpaRepository
-import java.util.*
 
 interface UserOrderRepository : JpaRepository<UserOrderEntity, Long> {
     // 특정 유저의 모든 주문

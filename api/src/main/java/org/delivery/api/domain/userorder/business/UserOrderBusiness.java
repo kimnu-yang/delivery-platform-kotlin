@@ -1,9 +1,9 @@
 package org.delivery.api.domain.userorder.business;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.delivery.api.domain.userorder.controller.model.UserOrderResponse;
 import org.delivery.common.annotation.Business;
 import org.delivery.api.domain.store.converter.StoreConverter;
 import org.delivery.api.domain.store.service.StoreService;
@@ -12,14 +12,11 @@ import org.delivery.api.domain.storemenu.service.StoreMenuService;
 import org.delivery.api.domain.user.model.User;
 import org.delivery.api.domain.userorder.controller.model.UserOrderDetailResponse;
 import org.delivery.api.domain.userorder.controller.model.UserOrderRequest;
-import org.delivery.api.domain.userorder.controller.model.UserOrderResponse;
 import org.delivery.api.domain.userorder.converter.UserOrderConverter;
 import org.delivery.api.domain.userorder.producer.UserOrderProducer;
 import org.delivery.api.domain.userorder.service.UserOrderService;
 import org.delivery.api.domain.userordermenu.converter.UserOrderMenuConverter;
 import org.delivery.api.domain.userordermenu.service.UserOrderMenuService;
-import org.delivery.db.store.StoreEntity;
-import org.delivery.db.userorder.UserOrderEntity;
 import org.delivery.db.userordermenu.UserOrderMenuEntity;
 import org.delivery.db.userordermenu.enums.UserOrderMenuStatus;
 
@@ -44,8 +41,6 @@ public class UserOrderBusiness {
     private final StoreConverter storeConverter;
 
     private final UserOrderProducer userOrderProducer;
-
-    private final ObjectMapper objectMapper;
 
     // 1. 사용자, 메뉴 id
     // 2. userOrder 생성
