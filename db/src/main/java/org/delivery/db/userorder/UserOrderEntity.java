@@ -1,10 +1,8 @@
 package org.delivery.db.userorder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.delivery.db.BaseEntity;
 import org.delivery.db.store.StoreEntity;
@@ -50,5 +48,11 @@ public class UserOrderEntity extends BaseEntity {
     private LocalDateTime receivedAt;
 
     @OneToMany(mappedBy = "userOrder")
+    // UserOrderEntity를 사용할때 Entity에 대해 toSting 호출을 하는데 아래 매핑된 데이터들 또한 toString을 하게되며 반복적으로 호출을하며 에러를 발생시킨다.
+    // 그러므로 이 Entity에 대해 toString 호출하지 않도록 설정을 해주어야 한다.
+    @ToString.Exclude
+    // 위와 비슷하게 UserOrderEntity를 호출할때 Json으로 파싱하는 과정에서 반복적인 호출이 에러를 발생시킨다
+    // 아래 어노테이션으로 Json 파싱을 막아준다.
+    @JsonIgnore
     private List<UserOrderMenuEntity> userOrderMenuList;
 }
