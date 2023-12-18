@@ -18,7 +18,7 @@ public class UserOrderService {
 
     private final UserOrderRepository userOrderRepository;
 
-    public UserOrderEntity getUSerOrderWithOutStatusWithThrow(
+    public UserOrderEntity getUserOrderWithOutStatusWithThrow(
             Long id,
             Long userId
     ){
