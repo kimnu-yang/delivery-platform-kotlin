@@ -1,7 +1,6 @@
 package org.delivery.api.domain.user.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.delivery.common.error.ErrorCode;
 import org.delivery.common.error.UserErrorCode;
 import org.delivery.common.exception.ApiException;
@@ -44,17 +43,19 @@ public class UserService {
             String email,
             String password
     ){
-        return userRepository.findFirstByEmailAndPasswordAndStatusOrderByIdDesc(
+        return Optional.ofNullable(userRepository.findFirstByEmailAndPasswordAndStatusOrderByIdDesc(
                 email,
                 password,
                 UserStatus.REGISTERED
+            )
         ).orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
     }
 
     public UserEntity getUserWithThrow(Long userId) {
-        return userRepository.findFirstByIdAndStatusOrderByIdDesc(
+        return Optional.ofNullable(userRepository.findFirstByIdAndStatusOrderByIdDesc(
                 userId,
                 UserStatus.REGISTERED
+            )
         ).orElseThrow(() -> new ApiException(UserErrorCode.USER_NOT_FOUND));
     }
 }
