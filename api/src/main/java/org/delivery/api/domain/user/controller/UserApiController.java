@@ -10,10 +10,6 @@ import org.delivery.api.domain.user.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,7 +23,6 @@ public class UserApiController {
             @Parameter(hidden = true)
             @UserSession User user
     ){
-
         var response = userBusiness.me(user.getId());
         return Api.OK(response);
     }

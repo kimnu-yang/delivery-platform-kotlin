@@ -21,7 +21,7 @@ class UserOrderEntity (
 
     @field:JoinColumn(nullable = false)
     @field:ManyToOne
-    val store: StoreEntity? = null,
+    var store: StoreEntity? = null,
 
     @field:Enumerated(EnumType.STRING)
     @field:Column(length = 50, nullable = false)
