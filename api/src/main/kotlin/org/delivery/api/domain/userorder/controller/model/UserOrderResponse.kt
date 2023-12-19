@@ -5,12 +5,12 @@ import java.math.BigDecimal
 import java.time.LocalDateTime
 
 data class UserOrderResponse(
-    val id: Long? = null,
-    val status: UserOrderStatus? = null,
-    val amount: BigDecimal? = null,
-    val orderedAt: LocalDateTime? = null,
-    val acceptedAt: LocalDateTime? = null,
-    val cookingStartedAt: LocalDateTime? = null,
-    val deliveryStartedAt: LocalDateTime? = null,
-    val receivedAt: LocalDateTime? = null
+    var id: Long? = null,
+    var status: UserOrderStatus? = null,
+    var amount: BigDecimal? = null,
+    var orderedAt: LocalDateTime? = null,
+    var acceptedAt: LocalDateTime? = null,
+    var cookingStartedAt: LocalDateTime? = null,
+    var deliveryStartedAt: LocalDateTime? = null,
+    var receivedAt: LocalDateTime? = null
 )
