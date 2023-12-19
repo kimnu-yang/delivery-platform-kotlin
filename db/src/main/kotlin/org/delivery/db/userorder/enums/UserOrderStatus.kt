@@ -1,9 +1,6 @@
-package org.delivery.db.userorder.enums;
+package org.delivery.db.userorder.enums
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
-public enum UserOrderStatus {
+enum class UserOrderStatus( description: String ) {
 
     REGISTERED("등록"),
     UNREGISTERED("해지"),
@@ -12,8 +9,4 @@ public enum UserOrderStatus {
     COOKING("요리중"),
     DELIVERY("배달중"),
     RECEIVE("완료")
-    ;
-
-
-    private final String description;
 }
