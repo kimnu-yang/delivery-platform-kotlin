@@ -15,6 +15,14 @@ management:
     metrics:
       export:
         enabled: true
+  statsd:
+    metrics:
+      export:
+        enabled: true
+        flavor: telegraf
+        polling-frequency: 5s
+        host: localhost
+        port: 8125
 
 spring:
   rabbitmq:

@@ -29,6 +29,10 @@ dependencies {
     // 프로메테우스
     implementation 'io.micrometer:micrometer-registry-prometheus:1.11.1'
 
+    // TICK stack으로 데이터를 보내기 위한 포맷 statsD
+    implementation 'io.micrometer:micrometer-registry-statsd:1.11.0'
+
+
 
     // lombok 어노테이션 기반 코드 자동생성
     compileOnly 'org.projectlombok:lombok'
