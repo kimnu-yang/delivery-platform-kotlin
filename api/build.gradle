@@ -23,6 +23,13 @@ repositories {
 }
 
 dependencies {
+    // 스프링 부트 엑츄에이터
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // 프로메테우스
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.11.1'
+
+
     // lombok 어노테이션 기반 코드 자동생성
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
