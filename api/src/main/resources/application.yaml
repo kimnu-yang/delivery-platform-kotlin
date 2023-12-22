@@ -1,6 +1,21 @@
 server:
   name: delivery-api
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      show-details: always
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
 spring:
   rabbitmq:
     host: localhost
